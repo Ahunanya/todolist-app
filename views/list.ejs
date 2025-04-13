@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>To Do list</title>
-</head>
-<body>
+<%- include("header") -%>
+
+
     <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-16">
         <div class="px-4 py-2">
               <h1 class="text-gray-800 font-bold text-2xl uppercase"> <%= listTitle %> </h1>
@@ -17,29 +10,28 @@
                 <input
                     class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                     type="text" name="newItem" placeholder="Add a task">
+                <% if (listTitle === "Deliverables list") { %>
+                    <input type="hidden" name="list" value="Deliverables">
+                <% } %>
                 <button
                     class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-                    type="button">
+                    type="submit">
                     Add
                 </button>
             </div>
         </form>
         <ul class="divide-y divide-gray-200 px-4">
-            <% for (var i=0; i<newListItems. length; i++) { %>
+            <% for (var i = 0; i < newListItems.length; i++) { %>
                 <li class="py-4"> 
-               
-                <div class="flex items-center">
-                    <input id="todo1" name="todo1" type="checkbox"
-                        class="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded">
-                    <label for="todo1" class="ml-3 block text-gray-900">
-                        <span class="text-lg font-medium"> <%= newListItems[i] %> 
-                            <% } %>
-                        </span>
-                
-                    </label>
-                </div>
-            
+                    <div class="flex items-center">
+                        <input id="todo<%= i %>" name="todo<%= i %>" type="checkbox"
+                               class="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded">
+                        <label for="todo<%= i %>" class="ml-3 block text-gray-900">
+                            <span class="text-lg font-medium"><%= newListItems[i] %></span>
+                        </label>
+                    </div>
+                </li>
+            <% } %>
         </ul>
     </div>
-</body>
-</html>
+<%- include("header") -%>
