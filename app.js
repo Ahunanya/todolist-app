@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
-
+const path = require("path");
 
 const app = express();
 
@@ -9,6 +9,7 @@ const items = ["Buy Food", "Cook Food", "Eat Food"];
 const deliverablesItems = [];
 
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
